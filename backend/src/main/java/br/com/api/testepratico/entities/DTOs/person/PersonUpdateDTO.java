@@ -1,7 +1,10 @@
 package br.com.api.testepratico.entities.DTOs.person;
 
 import br.com.api.testepratico.entities.models.TypeClient;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -9,10 +12,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 @Data
-public class PersonCreateDTO implements Serializable{
+public class PersonUpdateDTO implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    private TypeClient typeClient;
     private String name;
     private String cpf;
     private String cep;
