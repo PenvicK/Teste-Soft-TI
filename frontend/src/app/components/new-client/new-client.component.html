@@ -1,17 +1,15 @@
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<select class="form-select" aria-label="Default select example">
+  <option selected>Tipo Cliente</option>
+  <option value="client.typeClient">Fisico</option>
+  <option value="client.typeClient">Juridico</option>
+</select>
+<input class="form-control" type="text" placeholder="Razão Social" ng-model="client.name" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="Nome Fantasia"  ng-model="client.fantasyName" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="CNPJ"  ng-model="client.cnpj" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="CEP"  ng-model="client.cep" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="Endereço"  ng-model="client.address" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="Bairro"  ng-model="client.district" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="Cidade"  ng-model="client.city" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="Telefone"  ng-model="client.phone" ng-model-options="{ getterSetter: true }">
+<input class="form-control" type="text" placeholder="E-mail"  ng-model="client.email" ng-model-options="{ getterSetter: true }">

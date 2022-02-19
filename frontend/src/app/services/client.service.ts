@@ -3,13 +3,19 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Client } from '../models/client';
+import { Company } from '../models/company';
+import { Person } from '../models/person';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-
+  
   url = 'http://localhost:8080/api/clients'
+  urlCompany = 'http://localhost:8080/api/clients/company'
+  urlPerson = 'http://localhost:8080/api/clients/person'
+
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,6 +28,21 @@ export class ClientService {
       .pipe(
         retry(2),
         catchError(this.handleError))
+  }
+
+  saveCompany(company: Company): Observable<Company> {
+    return this.httpClient.post<Company>(this.urlCompany, JSON.stringify(company), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+  savePerson(person: Person): Observable<Person> {
+    return this.httpClient.post<Person>(this.urlPerson, JSON.stringify(person), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
   handleError(error: HttpErrorResponse) {
