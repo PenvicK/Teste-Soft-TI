@@ -1,6 +1,9 @@
+export enum TypeClient{
+    FISICA, JURIDICA
+}
+
 export interface Company {
-    id: number,
-    typeClient: string,
+    typeClient: TypeClient,
     name: string,
     fantasyName:string,
     cnpj: string,

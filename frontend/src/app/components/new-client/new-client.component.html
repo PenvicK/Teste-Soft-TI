@@ -1,15 +1,38 @@
 
-<select class="form-select" aria-label="Default select example">
-  <option selected>Tipo Cliente</option>
-  <option value="client.typeClient">Fisico</option>
-  <option value="client.typeClient">Juridico</option>
-</select>
-<input class="form-control" type="text" placeholder="Razão Social" ng-model="client.name" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="Nome Fantasia"  ng-model="client.fantasyName" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="CNPJ"  ng-model="client.cnpj" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="CEP"  ng-model="client.cep" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="Endereço"  ng-model="client.address" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="Bairro"  ng-model="client.district" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="Cidade"  ng-model="client.city" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="Telefone"  ng-model="client.phone" ng-model-options="{ getterSetter: true }">
-<input class="form-control" type="text" placeholder="E-mail"  ng-model="client.email" ng-model-options="{ getterSetter: true }">
+<p>
+  <select #f class="form-select" (change)="changeType(f.value)">
+    <option disabled selected>Tipo Cliente</option>
+    <option  value="false">Fisica</option>
+    <option  value="true" >Juridica</option>
+  </select>
+</p>
+
+<div *ngIf="legalOrNatural == true">
+  <p><input class="form-control" type="text" placeholder="Razão Social" [(ngModel)]="company.name" ></p>
+  <p><input class="form-control" type="text" placeholder="Nome Fantasia" [(ngModel)]="company.fantasyName" ></p>
+  <p><input class="form-control" type="text" placeholder="CNPJ"  [(ngModel)]="company.cnpj" ></p>
+  <p><input class="form-control" type="text" name="cep" placeholder="CEP"  [(ngModel)]="company.cep" ></p>
+  <p><input class="form-control" type="text" name="logradouro" placeholder="Endereço"  [(ngModel)]="company.address" ></p>
+  <p><input class="form-control" type="text" name="bairro" placeholder="Bairro"  [(ngModel)]="company.district" ></p>
+  <p><input class="form-control" type="text" name="localidade" placeholder="Cidade"  [(ngModel)]="company.city" ></p>
+  <p><input class="form-control" type="text" placeholder="Telefone"  [(ngModel)]="company.phone" ></p>
+  <p><input class="form-control" type="text" placeholder="E-mail"  [(ngModel)]="company.email" ></p>
+</div>
+<div *ngIf="legalOrNatural == false">
+  <p><input class="form-control" type="text" placeholder="Nome" [(ngModel)]="person.name" ></p>
+  <p><input class="form-control" type="text" placeholder="CPF"  [(ngModel)]="person.cpf" ></p>
+  <p><input class="form-control" type="text" placeholder="CEP"  [(ngModel)]="person.cep" ></p>
+  <p><input class="form-control" type="text" placeholder="Endereço"  [(ngModel)]="person.address" ></p>
+  <p><input class="form-control" type="text" placeholder="Bairro"  [(ngModel)]="person.district" ></p>
+  <p><input class="form-control" type="text" placeholder="Cidade"  [(ngModel)]="person.city" ></p>
+  <p><input class="form-control" type="text" placeholder="Telefone"  [(ngModel)]="person.phone" ></p>
+  <p><input class="form-control" type="text" placeholder="E-mail"  [(ngModel)]="person.email" ></p>
+</div>
+<div class="modal-footer" *ngIf="legalOrNatural == true">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-primary" (click)="saveCompany()">Salvar</button>
+</div>
+<div class="modal-footer" *ngIf="legalOrNatural == false">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-primary" (click)="savePerson()">Salvar</button>
+</div>

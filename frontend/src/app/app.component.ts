@@ -27,19 +27,6 @@ export class AppComponent implements OnInit{
     this.clientService.getClients().subscribe((clients: Client[]) => {
       this.clients = clients;
     });
-    console.log(this.clients);
-  }
-
-  saveCompany(form: NgForm) {
-    this.clientService.saveCompany(this.company).subscribe(() => {
-        this.cleanForm(form);
-      });
-  }
-
-  savePerson(form: NgForm) {
-    this.clientService.savePerson(this.person).subscribe(() => {
-        this.cleanForm(form);
-      });
   }
 
   cleanForm(form: NgForm) {

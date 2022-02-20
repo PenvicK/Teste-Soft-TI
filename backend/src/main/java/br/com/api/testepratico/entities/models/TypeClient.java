@@ -1,5 +1,5 @@
 package br.com.api.testepratico.entities.models;
 
 public enum TypeClient {
-    Fisica, Juridica
+    FISICA, JURIDICA
 }
