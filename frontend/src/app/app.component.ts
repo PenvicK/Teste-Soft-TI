@@ -13,8 +13,7 @@ import { ClientService } from './services/client.service';
 export class AppComponent implements OnInit{
   client = {} as Client;
   clients: Client[] = [];
-  company = {} as Company;
-  person = {} as Person;
+
 
 
   constructor(private clientService: ClientService) {}
@@ -32,7 +31,6 @@ export class AppComponent implements OnInit{
   cleanForm(form: NgForm) {
     this.clientService.getClients();
     form.resetForm();
-    this.company = {} as Company;
-    this.person = {} as Person;
+  
   }
 }

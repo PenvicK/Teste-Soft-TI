@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { retry, catchError, switchMap, map } from 'rxjs/operators';
 import { Client } from '../models/client';
 import { Company } from '../models/company';
 import { Person } from '../models/person';
 import { ViaCep } from '../models/via-cep';
+import { validarCEP, validarEndereco } from '../utils';
+import { BASE_URL } from '../models/constantes';
+import { CEPError } from '../models/ceperror';
+import { CEPErrorCode } from '../models/ceperror-code';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +34,20 @@ export class ClientService {
         catchError(this.handleError))
   }
   
-
-  
+  buscarPorCep(cep: string): Observable<ViaCep> {
+    return of(cep).pipe(
+      validarCEP(),
+      switchMap((cepValido) =>
+        this.httpClient.get<ViaCep>(`${BASE_URL}/${cepValido}/json`)
+      ),
+      map((endereco) => {
+        if ('cep' in endereco) {
+          return endereco;
+        }
+        throw new CEPError(CEPErrorCode.CEP_NAO_ENCONTRADO);
+      })
+    );
+  }
   
   saveCompany(company: Company): Observable<Company> {
     return this.httpClient.post<Company>(this.urlCompany, JSON.stringify(company), this.httpOptions)
